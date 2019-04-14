@@ -1,0 +1,25 @@
+$monsterColour: #ec5555;
+$playerColour: #55a8ec;
+
+.Combatant {
+  @extend %u-m-sm;
+  @extend %u-p-sm;
+
+  // &.is-player {}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+
+  border-radius: $borderRadius;
+  background-color: $monsterColour;
+  
+  &.is-player {
+    background-color: $playerColour;
+  }
+
+  &.is-active {
+    // background: linear-gradient(to right, $selectedCombatant , $parchment);
+    border: 2px solid linear-gradient(to right, $selectedCombatant , $parchment);
+  }
+}

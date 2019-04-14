@@ -1,0 +1,78 @@
+// ==============
+// Variables
+// ==============
+
+// ==============
+// Spacing Units
+// ==============
+
+$v: 16px;
+$h: $v;
+$borderRadius: 4px;
+
+// 74px for the header and border on the nav
+$headerHeight: 74px;
+
+// ==============
+// Colours
+// ==============
+
+$white: #ffffff;
+$black:     #000000;
+$grey-dark: #8b8b8b; // "Thunder Grey"
+$grey-light: #c5c5c5;
+
+$background-blue: #546d7b;
+$rusted-gold:  #ce9e62;
+$gold:  #ccac00;
+$rusted-red: #c1432e;
+$silver: #4b6777;
+$contrast: #2c2c2c;
+
+$text:       $black;
+$text-light: $grey-dark;
+$highlight:  cyan;
+$parchment: #d8ba79;
+$header: #989898;
+$selectedCombatant: rgba(138, 255, 102, 0.843);
+
+// Hitpoint colours
+$high:        #00f00c;
+$med:        #f09c00;
+$low:        #f00000;
+
+// Item quality levels
+$common: #E5E5E5;
+$uncommon: #92FF80;
+$rare: #78AAF5;
+$veryRare: #B974FF;
+$legendary: #FEA63F;
+$sentient: #FF91D3;
+$artifact: #3EE8FF;
+
+$border: $grey-dark;
+
+$buttonColour: $black;
+
+$btnCol: $buttonColour;
+$btnHoverCol: lighten($buttonColour, 10%);
+// $btnHoverCol: darken($buttonColour, 10%);
+
+// Development only
+$debug:   #ff00dc;
+
+// ==============
+// Font Variables
+// ==============
+
+$base-font-color: $text;
+$base-font-size:    16px;
+$base-font-size-sm: 14px;
+$base-font-size-xs: 12px;
+$base-line-height:  1.5;
+
+// ==============
+// Z indexes
+// ==============
+
+$header-z: 10;

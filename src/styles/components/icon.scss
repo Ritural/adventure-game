@@ -1,0 +1,23 @@
+.Icon {
+  width: 100%;
+  height: 100%;
+
+  > svg {
+    width: $v*2;
+    height: $v*2;
+  }
+}
+
+.Icon--small {
+  > svg {
+    width: $v/2;
+    height: $v/2;
+  } 
+}
+
+.Icon--medium {
+  > svg {
+    width: $v;
+    height: $v;
+  } 
+}

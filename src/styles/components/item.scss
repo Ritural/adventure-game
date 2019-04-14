@@ -1,0 +1,81 @@
+.Item {
+  display: flex;
+  flex-direction: column;
+  width: 238px;
+  height: 332px;
+  background-color: #78AAF5;
+  border-radius: $borderRadius;
+
+  &.common {
+    background-color: $common;
+  }
+  &.uncommon {
+    background-color: $uncommon;
+  }
+  &.rare {
+    background-color: $rare;
+  }
+  &.veryRare {
+    background-color: $veryRare;
+  }
+  &.legendary {
+    background-color: $legendary;
+  }
+  &.sentient {
+    background-color: $sentient;
+  }
+  &.artifact {
+    background-color: $artifact;
+  }
+}
+
+.Item-head {
+  @extend %u-p-sm;
+  position: relative;
+
+  height: 60px;
+  width: 100%;
+}
+
+.Item-attunement {
+  position: absolute;
+  top: 10%;
+  left: 80%;
+}
+
+.Item-body {
+  @extend %u-p-sm;
+
+  height: 100%;
+  background-color: $white;
+  border-radius: $borderRadius;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.Item-description {
+  color: $black;
+  flex-grow: 1;
+  white-space: pre-wrap;
+  word-break: break-word;
+  -ms-word-break: break-word;
+}
+
+.Item-weapon {
+  display: flex;
+  flex-shrink: 1;
+  justify-content: space-around;
+
+  background-color: $debug;
+}
+
+.Item-damage {
+  @extend %u-p-sm;
+  background-color: $grey-dark;
+}
+
+.Item-properties {
+  @extend %u-p-sm;
+  background-color: $grey-dark;
+}

@@ -1,0 +1,58 @@
+$altColour: lightblue;
+
+.InitiativeTracker {
+  background-color: lightgray;
+  padding: $v/2;
+  // border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.InitiativeTracker-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// .InitiativeTracker-table {
+//   width: 100%;
+//   min-width: 240px;
+//   margin-bottom: $v;
+
+//   // tr:nth-child(even) {
+//   //   background-color: #929090;
+//   // }
+// }
+
+.InitiativeTracker-list {
+  width: 100%;
+  min-width: 240px;
+  margin-bottom: $v;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+// .InitiativeTracker-table-head {
+//   th:nth-child(even) {
+//     background-color: $altColour;
+//   }
+// }
+
+// .InitiativeTracker-table-body {
+//   td:nth-child(even) {
+//     background-color: $altColour;
+//   }
+// }
+
+.InitiativeTracker-results {
+
+}
+
+.InitiativeTracker-result {
+  
+}
+
+.InitiativeTracker-panel {}
+
+.InitiativeTracker-stats {}

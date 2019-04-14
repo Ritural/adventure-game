@@ -1,0 +1,13 @@
+// .Quality {
+// }
+
+.Quality-picker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Quality-picker-item {
+  @extend %u-m-sm;
+  flex-shrink: 1;
+}

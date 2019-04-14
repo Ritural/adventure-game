@@ -1,0 +1,49 @@
+.ItemCreator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ItemCreator-editor,
+.ItemCreator-preview {
+  @extend %u-p-md;
+
+  background-color: $grey-dark;
+  border-radius: $borderRadius;
+  flex-grow: 1;
+  display: flex;
+}
+
+.ItemCreator-editor {
+  @extend %u-mR-lg;
+
+  flex-direction: column;
+}
+
+.ItemCreator-preview {
+  flex-direction: column;
+}
+
+.ItemCreator-editor-description {
+  max-width: 450px;
+}
+
+.ItemCreator-items {
+  @extend %u-mT-lg;
+  
+  border-radius: $borderRadius;
+  background-color: $parchment; 
+}
+
+.ItemCreator-items-controls {
+  @extend %u-p-md;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.ItemCreator-items-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

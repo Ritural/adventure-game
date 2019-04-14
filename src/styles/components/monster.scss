@@ -1,0 +1,30 @@
+.Monster {
+  background-color: $parchment;
+
+  &.is-selected {
+    box-shadow: 1px solid cyan;
+
+    .Monster-details {
+      padding-left: $v/2;
+      padding-right: $v/2;
+      padding-bottom: $v/2;
+      display: block;
+    }
+  }
+  
+}
+
+.Monster-header {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .Monster-header-button {
+    @extend %u-m-md;
+  }
+}
+
+.Monster-details {
+  display: none;
+}

@@ -1,0 +1,78 @@
+$btnCol: $buttonColour;
+$btnHoverCol: lighten($buttonColour, 10%);
+// $btnHoverCol: darken($buttonColour, 10%);
+
+.Button {
+  @extend %font-bold;
+  @include font(14px, 18px);
+  background: $white;
+  color: $white;
+  fill: $white;
+  background-color: $btnCol;
+  display: inline-block;
+  text-align: center;
+  transition: background-color .15s linear, color .15s linear;
+  cursor: pointer;
+  outline: none;
+  padding: $v / 2; // 8px
+  text-transform: uppercase;
+  min-width: 100px;
+
+  & > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Icon {
+    pointer-events: none;
+    > svg {
+      width: $v;
+      height: $v;
+    }
+  }
+
+  &.common {
+    background-color: $common;
+  }
+  &.uncommon {
+    background-color: $uncommon;
+  }
+  &.rare {
+    background-color: $rare;
+  }
+  &.veryRare {
+    background-color: $veryRare;
+  }
+  &.legendary {
+    background-color: $legendary;
+  }
+  &.sentient {
+    background-color: $sentient;
+  }
+  &.artifact {
+    background-color: $artifact;
+  }
+}
+
+.Button-secondary {
+  color: $black;
+  fill: $black;
+  background-color: $white;
+  border-color: $btnCol;
+}
+
+.Button:hover {
+  color: $grey-light;
+  background-color: $btnHoverCol;
+}
+
+.Button:active {
+  transform: translateY(1px);
+}
+
+// Modifiers
+.Button--icon {
+  width: 36px;
+  min-width: 36px;
+}

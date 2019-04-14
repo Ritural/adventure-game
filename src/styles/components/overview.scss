@@ -1,0 +1,11 @@
+.Overview {
+  overflow: hidden;
+  position: absolute;
+  height: calc(100% - #{$headerHeight});
+  width: 100vw;
+  z-index: 20;
+  background: $background-blue;
+  left: 0;
+  top: $headerHeight;
+  right: 0;
+}

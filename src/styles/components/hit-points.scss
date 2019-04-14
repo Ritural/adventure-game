@@ -1,0 +1,17 @@
+.HitPoints {
+  border: 1px solid $black;
+  border-radius: $borderRadius;
+  text-align: center;
+ 
+  &.is-high {
+    background-color: $high;
+  }
+
+  &.is-med {
+    background-color: $med;
+  }
+
+  &.is-low {
+    background-color: $low;
+  }
+}

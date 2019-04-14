@@ -1,0 +1,32 @@
+body,
+html,
+div#root,
+.PoseGroup {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  background-color: $background-blue;
+
+  display: flex;
+  flex-direction: column;
+}
+
+// Outer wrapper
+.ContentGrid {
+  @extend %MainGridContainer;
+
+  color: $white;
+  flex-grow: 1;
+  margin-top: $v*4;
+  margin-bottom: $v*4;
+
+  &.has-overlay {
+    overflow: hidden;
+  }
+}
+
+// Inner wrapper
+.ContentGrid-Content {
+  @extend %MainGridContainer-Content;
+}
