@@ -54,8 +54,8 @@ export const Game = () => {
 
   return (
     <div className='Game'>
-      <div className='Game-Map'>
-        <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Game-Map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
+      <div className='Game-map'>
+        <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Game-map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
       </div>
     </div>
   );
