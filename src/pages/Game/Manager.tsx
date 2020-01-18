@@ -10,7 +10,7 @@ export const Manager = () => {
 
   return (
     <div className=''>
-      <Game player={player} map={map} />
+      <Game initialPlayer={player} initialMap={map} />
     </div>
   );
 };

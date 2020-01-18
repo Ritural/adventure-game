@@ -21,9 +21,11 @@ export class Player {
     this.image.alt = 'Icon made by Freepik from www.flaticon.com';
   }
 
-  updatePosition = (x: number, y: number) => {
+  updatePosition = (x: number, y: number): this => {
     this.x = x;
     this.y = y;
+
+    return this;
   }
 }
 
@@ -34,7 +36,7 @@ interface IDirectionChange {
   gameMap: Map;
 }
 
-export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChange): Player => {
+export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChange): { x: number, y: number} => {
   // const {
   //   player,
   //   gameMap,
@@ -45,9 +47,7 @@ export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChan
   //   currentMap,
   // } = this.state;
 
-  const { x } = player;
-  const { y } = player;
-
+  const { x, y } = player;
   let newX = x;
   let newY = y;
 
@@ -77,10 +77,7 @@ export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChan
       break;
   }
 
-  console.log(newX, newY);
-
   return {
-    ...player,
     x: newX,
     y: newY,
   };

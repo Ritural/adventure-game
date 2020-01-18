@@ -39,8 +39,8 @@ export const createTestMap = (): IMap => {
     name: 'Test map',
     map: gameMap,
     startPoint: {
-      x: 5,
-      y: 5,
+      x: 2,
+      y: 2,
     },
   };
 };

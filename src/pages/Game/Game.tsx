@@ -20,11 +20,11 @@ interface IMapState {
 }
 
 interface IGameProps {
-  player: Player;
-  map: IMap;
+  initialPlayer: Player;
+  initialMap: IMap;
 }
 
-export const Game = (props: IGameProps) => {
+export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
   const [gridState, updateGridState] = React.useState<IGridCanvasState>({
     gridElement: null,
     gridCtx: null,
@@ -33,32 +33,25 @@ export const Game = (props: IGameProps) => {
     mapElement: null,
     mapCtx: null,
   });
-  const [mapState, updateMapState] = React.useState<IMapState>({
-    // eslint-disable-next-line react/destructuring-assignment
-    currentMap: props.map,
-    // eslint-disable-next-line react/destructuring-assignment
-    player: props.player,
-  });
 
-  console.log('Player', mapState.player);
-
-  const onDirection = (direction: Direction | null) => {
-    if (direction) {
-      const newPlayer = onDirectionChange({
-        player: mapState.player,
-        gameMap: mapState.currentMap.map,
-        direction,
-      });
-
-      updateMapState({
-        ...mapState,
-        player: newPlayer,
-      });
-    }
-  };
+  const [player, updatePlayer] = React.useState<Player>(initialPlayer);
+  const [currentMap, updateCurrentMap] = React.useState<IMap>(initialMap);
 
   React.useEffect(() => {
-    setupControls({ onDirection });
+    setupControls({
+      onDirection: (direction: Direction | null) => {
+        if (direction) {
+          const { x, y } = onDirectionChange({
+            player,
+            gameMap: currentMap.map,
+            direction,
+          });
+
+          const newPlayer = player.updatePosition(x, y);
+          updatePlayer({ ...newPlayer });
+        }
+      }
+    });
   }, []);
 
   const setupGameMapGrid = (gridCanvas: HTMLCanvasElement | null) => {
@@ -100,7 +93,6 @@ export const Game = (props: IGameProps) => {
       return;
     }
 
-    const { player, currentMap } = mapState;
     renderMap({
       mapCtx,
       canvas: mapCanvas,
@@ -116,16 +108,15 @@ export const Game = (props: IGameProps) => {
 
   React.useEffect(() => {
     const { mapCtx, mapElement } = mapCanvasState;
-
     if (mapCtx && mapElement) {
       renderMap({
         mapCtx,
         canvas: mapElement,
-        player: mapState.player,
-        currentMap: mapState.currentMap,
+        player,
+        currentMap,
       });
     }
-  }, [mapState.player, mapState.currentMap]);
+  }, [player.x, player.y]);
 
   return (
     <div className='Game'>

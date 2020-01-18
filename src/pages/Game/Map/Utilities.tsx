@@ -3,7 +3,7 @@ import {
 } from 'pages/Game/Constants';
 import { getRange } from 'utilities/range';
 import { Player } from 'pages/Game/Player/Player';
-import { IMap, IMapTile, Map } from './Map';
+import { IMap, IMapTile } from './Map';
 
 export function drawGrid(ctx: CanvasRenderingContext2D) {
   ctx.strokeStyle = 'black';
@@ -52,10 +52,10 @@ export function renderMap(props: IRenderMapProps) {
     currentMap,
   } = props;
 
-  const minY = -VISIBLE_RANGE; // player.props.y - player.props.view.bottom; // How far DOWN you can see
-  const maxY = VISIBLE_RANGE; // player.props.y + player.props.view.top; // How far UP you can see
-  const minX = -VISIBLE_RANGE; // player.props.x - player.props.view.left; // How far LEFT you can see
-  const maxX = VISIBLE_RANGE; // player.props.x + player.props.view.right; // How far RIGHT you can see
+  const minY = player.y - VISIBLE_RANGE; // How far DOWN you can see
+  const maxY = player.y + VISIBLE_RANGE; // How far UP you can see
+  const minX = player.x - VISIBLE_RANGE; // How far LEFT you can see
+  const maxX = player.x + VISIBLE_RANGE; // How far RIGHT you can see
 
   mapCtx.clearRect(0, 0, canvas.width, canvas.height);
 
