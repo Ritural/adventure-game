@@ -1,5 +1,21 @@
 import { getRange } from 'utilities/range';
 
+const TEST_SOLID = [
+  [0],
+  [0, 1, 1, 1, 1, 1, 1, 0, 1],
+  [0, 1, 0, 0, 0, 0, 0, 0, 1],
+  [0, 1, 0, 0, 1, 1, 1, 0, 1],
+  [0, 1, 0, 0, 0, 0, 1],
+  [0, 1, 0, 0, 0, 0, 1],
+  [0, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 1],
+  [0, 1, 0, 1, 0, 0, 1],
+  [0, 1, 0, 0, 0, 1, 1],
+];
+function isTileSolid(row: number, col: number): boolean {
+  return TEST_SOLID[row] && TEST_SOLID[row][col] === 1;
+}
+
 export interface IMapTile {
   backgroundColour: string;
   isSolid: boolean;
@@ -24,7 +40,7 @@ export interface IMap {
 }
 
 export const createTestMap = (): IMap => {
-  const gameMap: Map = getRange(0, 10).map((row) => getRange(0, 10).map((col) => {
+  let gameMap: Map = getRange(0, 10).map((row) => getRange(0, 10).map((col) => {
     const mapTile: IMapTile = {
       backgroundColour: '#DDDFFF',
       isSolid: false,
@@ -35,12 +51,26 @@ export const createTestMap = (): IMap => {
     return mapTile;
   }));
 
+  gameMap = gameMap.map((y, row) => y.map((x, col) => {
+    if (isTileSolid(col, row)) {
+      return {
+        ...x,
+        isSolid: true,
+        backgroundColour: '#424242',
+      };
+    }
+
+    return x;
+  }));
+
+  console.log('gameMap', gameMap);
+
   return {
     name: 'Test map',
     map: gameMap,
     startPoint: {
-      x: 2,
-      y: 2,
+      x: 3,
+      y: 3,
     },
   };
 };
