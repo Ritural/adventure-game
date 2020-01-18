@@ -36,7 +36,9 @@ interface IDirectionChange {
   gameMap: Map;
 }
 
-export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChange): { x: number, y: number} => {
+export const onDirectionChange = (
+  { player, direction, gameMap }: IDirectionChange
+): { x: number, y: number} => {
   // const {
   //   player,
   //   gameMap,
@@ -75,6 +77,10 @@ export const onDirectionChange = ({ player, direction, gameMap }: IDirectionChan
     default:
       // Do nothing as key is not recognised
       break;
+  }
+
+  if (gameMap[newX][newY].isSolid) {
+    return { x, y };
   }
 
   return {
