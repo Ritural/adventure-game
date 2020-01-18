@@ -12,6 +12,35 @@ export class Player {
   x: number = 0;
   y: number = 0;
   tileColour: string = '#ffffff';
+  xp: number;
+  level: number;
+
+  stats: {
+    strength: {
+      value: number;
+      modifier: number;
+    };
+    dexterity: {
+      value: number;
+      modifier: number;
+    };
+    constitution: {
+      value: number;
+      modifier: number;
+    };
+    intelligence: {
+      value: number;
+      modifier: number;
+    };
+    wisdom: {
+      value: number;
+      modifier: number;
+    };
+    charisma: {
+      value: number;
+      modifier: number;
+    };
+  }
 
   constructor({ x, y }: IPlayer) {
     this.x = x;
@@ -26,6 +55,10 @@ export class Player {
     this.y = y;
 
     return this;
+  }
+
+  levelUp = () => {
+    this.level += 1;
   }
 }
 
