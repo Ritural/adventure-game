@@ -1,33 +1,18 @@
 {
   "compilerOptions": {
-    // Target latest version of ECMAScript.
-    "target": "esnext",
-    // Search under node_modules for non-relative imports.
-    "moduleResolution": "node",
-    // Process & infer types from .js files.
-    "allowJs": true,
-    // Don't emit; allow Babel to transform files.
-    "noEmit": true,
-    // Enable strictest settings like strictNullChecks & noImplicitAny.
-    "strict": true,
-    // Disallow features that require cross-file information for emit.
-    // "isolatedModules": true,
-    // Import non-ES modules as default imports.
-    // "esModuleInterop": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "module": "commonjs",
+    "target": "esnext",
     "jsx": "react",
-    "baseUrl": ".",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "lib": [
       "dom",
-      "es6",
-      "scripthost",
-      "es2015.promise"
+      "es2015",
+      "es2017",
+      "esnext"
     ],
+    "baseUrl": "./",
     "paths": {
       "public/*": [ "public/*" ],
       "game/*": ["src/game/*"],
@@ -42,11 +27,9 @@
       "utilities/*": [ "src/utilities/*" ]
     }
   },
-  "exclude": [
-    "node_modules"
-  ],
   "include": [
     "./src/**/*",
     "./definitions/*"
-  ]
+  ],
+  "exclude": ["node_modules", "public", ".cache"]
 }
