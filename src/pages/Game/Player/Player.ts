@@ -79,7 +79,7 @@ export const onDirectionChange = (
       break;
   }
 
-  if (gameMap[newX][newY].isSolid) {
+  if (gameMap[newY][newX].isSolid) {
     return { x, y };
   }
 

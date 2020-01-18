@@ -20,9 +20,9 @@ export function drawGrid(ctx: CanvasRenderingContext2D) {
 export function getMapTile(map: IMap, x: number, y: number): IMapTile {
   const mapGrid = map.map;
 
-  if (x >= 0 && x < mapGrid.length) {
-    if (y >= 0 && y < mapGrid[x].length) {
-      return mapGrid[x][y];
+  if (y >= 0 && y < mapGrid.length) {
+    if (x >= 0 && x < mapGrid[y].length) {
+      return mapGrid[y][x];
     }
   }
 
@@ -95,3 +95,66 @@ export function renderMap(props: IRenderMapProps) {
 
   mapCtx.stroke();
 }
+
+// type FogGrid = ('p' | 1 | 0)[][];
+// function getFogTile(fogGrid: FogGrid, x: number, y: number): boolean {
+//   if (y >= 0 && y < fogGrid.length) {
+//     if (x >= 0 && x < fogGrid[y].length) {
+//       return fogGrid[y][x] === 1;
+//     }
+//   }
+
+//   return false;
+// }
+
+// export function renderFog(props: IRenderMapProps) {
+//   const {
+//     mapCtx,
+//     canvas,
+//     player,
+//     currentMap,
+//   } = props;
+
+//   const mapGrid = currentMap.map;
+
+//   console.log('player', player.x, player.y);
+
+//   const minY = player.y - VISIBLE_RANGE; // How far DOWN you can see
+//   const maxY = player.y + VISIBLE_RANGE; // How far UP you can see
+//   const minX = player.x - VISIBLE_RANGE; // How far LEFT you can see
+//   const maxX = player.x + VISIBLE_RANGE; // How far RIGHT you can see
+
+//   mapCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+//   /*
+//     [0,0,0,0,0]
+//     [0,6,5,4,0]
+//     [0,7,P,3,0]
+//     [0,8,1,2,0]
+//     [0,9,0,0,0]
+//   */
+
+//   // 0 is clear
+//   // 1 is previous object was solid
+//   // 2 is fog
+
+//   const fogMatrix: ('p' | 0 | 1)[][] = mapGrid.map((y) => y.map((x) => (x.isSolid ? 1 : 0)));
+//   fogMatrix[player.y][player.x] = 'p';
+//   console.log('fogMatrix', fogMatrix);
+
+//   getRange(minY, maxY).forEach((y: number, yIdx: number) => {
+//     getRange(minX, maxX).forEach((x: number, xIdx: number) => {
+//       const isObscured = getFogTile(fogMatrix, x, y);
+
+//       const xPos = xIdx * TILE_SIZE;
+//       const yPos = yIdx * TILE_SIZE;
+
+//       if (isObscured) {
+//         mapCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+//         mapCtx.fillRect(xPos, yPos, TILE_SIZE, TILE_SIZE);
+//       }
+//     });
+//   });
+
+//   mapCtx.stroke();
+// }

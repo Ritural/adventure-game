@@ -4,7 +4,7 @@ const TEST_SOLID = [
   [0],
   [0, 1, 1, 1, 1, 1, 1, 0, 1],
   [0, 1, 0, 0, 0, 0, 0, 0, 1],
-  [0, 1, 0, 0, 1, 1, 1, 0, 1],
+  [0, 1, 0, 0, 0, 1, 1, 0, 1],
   [0, 1, 0, 0, 0, 0, 1],
   [0, 1, 0, 0, 0, 0, 1],
   [0, 1, 1, 1, 1, 1, 1],
@@ -52,7 +52,7 @@ export const createTestMap = (): IMap => {
   }));
 
   gameMap = gameMap.map((y, row) => y.map((x, col) => {
-    if (isTileSolid(col, row)) {
+    if (isTileSolid(row, col)) {
       return {
         ...x,
         isSolid: true,
