@@ -14,11 +14,6 @@ interface IMapCanvasState {
   mapElement: HTMLCanvasElement | null;
   mapCtx: CanvasRenderingContext2D | null;
 }
-interface IMapState {
-  currentMap: IMap;
-  player: Player;
-}
-
 interface IGameProps {
   initialPlayer: Player;
   initialMap: IMap;
@@ -33,6 +28,10 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
     mapElement: null,
     mapCtx: null,
   });
+  // const [fogCanvasState, updateFogCanvasState] = React.useState<IFogCanvasState>({
+  //   fogElement: null,
+  //   fogCtx: null,
+  // });
 
   const [player, updatePlayer] = React.useState<Player>(initialPlayer);
   const [currentMap, updateCurrentMap] = React.useState<IMap>(initialMap);
@@ -57,11 +56,7 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
   const setupGameMapGrid = (gridCanvas: HTMLCanvasElement | null) => {
     const { gridCtx: existingCtx, gridElement: existingEl } = gridState;
 
-    if (existingCtx || existingEl) {
-      return;
-    }
-
-    if (!gridCanvas) {
+    if (existingCtx || existingEl || !gridCanvas) {
       return;
     }
 
@@ -80,11 +75,7 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
 
   const setupGameMap = (mapCanvas: HTMLCanvasElement | null) => {
     const { mapCtx: existingCtx, mapElement: existingEl } = mapCanvasState;
-    if (existingCtx || existingEl) {
-      return;
-    }
-
-    if (!mapCanvas) {
+    if (existingCtx || existingEl || !mapCanvas) {
       return;
     }
 
@@ -106,8 +97,34 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
     });
   };
 
+  // const setupGameMapFog = (fogCanvas: HTMLCanvasElement | null) => {
+  //   const { fogCtx: existingCtx, fogElement: existingEl } = fogCanvasState;
+  //   if (existingCtx || existingEl || !fogCanvas) {
+  //     return;
+  //   }
+
+  //   const fogCtx = fogCanvas.getContext('2d');
+  //   if (!fogCtx) {
+  //     return;
+  //   }
+
+  //   renderFog({
+  //     mapCtx: fogCtx,
+  //     canvas: fogCanvas,
+  //     player,
+  //     currentMap,
+  //   });
+
+  //   updateFogCanvasState({
+  //     fogCtx,
+  //     fogElement: fogCanvas,
+  //   });
+  // };
+
   React.useEffect(() => {
     const { mapCtx, mapElement } = mapCanvasState;
+    // const { fogCtx, fogElement } = fogCanvasState;
+
     if (mapCtx && mapElement) {
       renderMap({
         mapCtx,
@@ -115,6 +132,12 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
         player,
         currentMap,
       });
+      // renderFog({
+      //   mapCtx: fogCtx,
+      //   canvas: fogElement,
+      //   player,
+      //   currentMap,
+      // });
     }
   }, [player.x, player.y]);
 
@@ -123,6 +146,7 @@ export const Game = ({ initialPlayer, initialMap }: IGameProps) => {
       <div className='Map'>
         <canvas ref={(mapCanvas) => setupGameMap(mapCanvas)} className='Map-game' width={CANVAS_SIZE} height={CANVAS_SIZE} />
         <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
+        {/* <canvas ref={(fogCanvas) => setupGameMapFog(fogCanvas)} className='Map-fog' width={CANVAS_SIZE} height={CANVAS_SIZE} /> */}
       </div>
     </div>
   );
