@@ -1,9 +1,8 @@
 {
   "recommendations": [
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "streetsidesoftware.code-spell-checker"
-  ],
-  "unwantedRecommendations": [
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "esbenp.prettier-vscode",
+    "shinnn.stylelint"
   ]
 }
