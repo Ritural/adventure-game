@@ -15,6 +15,7 @@ module.exports = {
     }
   },
   rules: {
+    'lines-between-class-members': [0],
     'no-plusplus': [0],
     'import/extensions': [0],
     'import/no-extraneous-dependencies': [0],
