@@ -1,8 +1,8 @@
-# Campaign Manager
+# Adventure Game
 
-Campaign Manager is a set of helpful tools for those Dungeon Masters out there.
+Adventure Game is RPG inspired by DnD in the same style as the original Pokemon games on GBA.
 
-It uses a combination of Typescript, React, React-router, and Redux.
+It uses a combination of React for the UI/HUD and HTML Canvas for the game itself.
 
 ## Getting Started
 
@@ -10,14 +10,14 @@ You'll need the following installed
 
 1. [NVM Node Version Manager](https://github.com/creationix/nvm)
 1. [Brew](https://brew.sh/)
-1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+1. [NPM](https://www.npmjs.com/get-npm)
 1. [Git](https://git-scm.com/)
 1. Your preferred editor, EG: [VSCode](https://code.visualstudio.com/)
 
 ## Installing the project
 
 1. Clone the project - `git clone git@github.com:Ritural/adventure-game.git`
-1. Change directories - `cd campaign-manager`
+1. Change directories - `cd adventure-game`
 1. Switch to develop - `git checkout develop`
 1. You're good to go!
 
@@ -42,7 +42,6 @@ Add a linter to your editor, if you're using VSCode you can search for eslint in
 * [Redux + Typescript](https://resir014.xyz/posts/2018/07/06/redux-4-plus-typescript/)
 * [Local Storage Redux](https://hackernoon.com/how-to-take-advantage-of-local-storage-in-your-react-projects-a895f2b2d3f2)
 * [React Redux Typescript Example](https://github.com/piotrwitek/react-redux-typescript-guide)
-* [TsLint Rules Examples](https://github.com/vladimiry/tslint-rules-bunch)
 
 ## Tasks
 
