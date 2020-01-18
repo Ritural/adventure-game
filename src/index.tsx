@@ -6,13 +6,18 @@ import 'styles/main.scss';
 
 import { Home } from 'pages/Home/Home';
 import { NotFound } from 'pages/NotFound/NotFound';
-import { Game } from 'pages/Game/Game';
+import { Manager } from 'pages/Game/Manager';
 
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/game' component={Game} />
+      <Route exact path='/'>
+        <Home />
+      </Route>
+
+      <Route exact path='/game'>
+        <Manager />
+      </Route>
 
       <Route component={NotFound} />
     </Switch>

@@ -1,35 +1,68 @@
 import * as React from 'react';
 
-interface IState {
+import { drawGrid, renderMap } from 'pages/Game/Map/Utilities';
+import { Player, Direction, onDirectionChange } from 'pages/Game/Player/Player';
+import { CANVAS_SIZE } from 'pages/Game/Constants';
+import { IMap } from 'pages/Game/Map/Map';
+import { setupControls } from './Controls';
+
+interface IGridCanvasState {
   gridElement: HTMLCanvasElement | null;
   gridCtx: CanvasRenderingContext2D | null;
 }
-
-export const MAX_TILE_COUNT = 13;
-export const TILE_SIZE = 50;
-export const CANVAS_SIZE = MAX_TILE_COUNT * TILE_SIZE;
-export const ENABLE_TILE_XY_TEXT = true;
-
-function drawGrid(ctx: CanvasRenderingContext2D) {
-  ctx.strokeStyle = 'black';
-
-  for (let y = 0; y < MAX_TILE_COUNT; y++) {
-    for (let x = 0; x < MAX_TILE_COUNT; x++) {
-      ctx.rect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    }
-  }
-
-  ctx.stroke();
+interface IMapCanvasState {
+  mapElement: HTMLCanvasElement | null;
+  mapCtx: CanvasRenderingContext2D | null;
+}
+interface IMapState {
+  currentMap: IMap;
+  player: Player;
 }
 
-export const Game = () => {
-  const [state, updateState] = React.useState<IState>({
+interface IGameProps {
+  player: Player;
+  map: IMap;
+}
+
+export const Game = (props: IGameProps) => {
+  const [gridState, updateGridState] = React.useState<IGridCanvasState>({
     gridElement: null,
     gridCtx: null,
   });
+  const [mapCanvasState, updateMapCanvasState] = React.useState<IMapCanvasState>({
+    mapElement: null,
+    mapCtx: null,
+  });
+  const [mapState, updateMapState] = React.useState<IMapState>({
+    // eslint-disable-next-line react/destructuring-assignment
+    currentMap: props.map,
+    // eslint-disable-next-line react/destructuring-assignment
+    player: props.player,
+  });
+
+  console.log('Player', mapState.player);
+
+  const onDirection = (direction: Direction | null) => {
+    if (direction) {
+      const newPlayer = onDirectionChange({
+        player: mapState.player,
+        gameMap: mapState.currentMap.map,
+        direction,
+      });
+
+      updateMapState({
+        ...mapState,
+        player: newPlayer,
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    setupControls({ onDirection });
+  }, []);
 
   const setupGameMapGrid = (gridCanvas: HTMLCanvasElement | null) => {
-    const { gridCtx: existingCtx, gridElement: existingEl } = state;
+    const { gridCtx: existingCtx, gridElement: existingEl } = gridState;
 
     if (existingCtx || existingEl) {
       return;
@@ -46,16 +79,59 @@ export const Game = () => {
 
     drawGrid(gridCtx);
 
-    updateState({
+    updateGridState({
       gridCtx,
       gridElement: gridCanvas,
     });
   };
 
+  const setupGameMap = (mapCanvas: HTMLCanvasElement | null) => {
+    const { mapCtx: existingCtx, mapElement: existingEl } = mapCanvasState;
+    if (existingCtx || existingEl) {
+      return;
+    }
+
+    if (!mapCanvas) {
+      return;
+    }
+
+    const mapCtx = mapCanvas.getContext('2d');
+    if (!mapCtx) {
+      return;
+    }
+
+    const { player, currentMap } = mapState;
+    renderMap({
+      mapCtx,
+      canvas: mapCanvas,
+      player,
+      currentMap,
+    });
+
+    updateMapCanvasState({
+      mapCtx,
+      mapElement: mapCanvas,
+    });
+  };
+
+  React.useEffect(() => {
+    const { mapCtx, mapElement } = mapCanvasState;
+
+    if (mapCtx && mapElement) {
+      renderMap({
+        mapCtx,
+        canvas: mapElement,
+        player: mapState.player,
+        currentMap: mapState.currentMap,
+      });
+    }
+  }, [mapState.player, mapState.currentMap]);
+
   return (
     <div className='Game'>
-      <div className='Game-map'>
-        <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Game-map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
+      <div className='Map'>
+        <canvas ref={(mapCanvas) => setupGameMap(mapCanvas)} className='Map-game' width={CANVAS_SIZE} height={CANVAS_SIZE} />
+        <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
       </div>
     </div>
   );
@@ -376,7 +452,7 @@ export const Game = () => {
 
 //   return {
 //     terrain,
-//   };
+//   }
 // }
 
 // function getTerrainType(terrainType: TERRAIN): TERRAIN_NAME {
