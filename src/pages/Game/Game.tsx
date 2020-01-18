@@ -10,29 +10,26 @@ export const TILE_SIZE = 50;
 export const CANVAS_SIZE = MAX_TILE_COUNT * TILE_SIZE;
 export const ENABLE_TILE_XY_TEXT = true;
 
-export class Game extends React.Component<{}, IState> {
-  constructor(props: {}) {
-    super(props);
+function drawGrid(ctx: CanvasRenderingContext2D) {
+  ctx.strokeStyle = 'black';
 
-    this.state = {
-      gridElement: null,
-      gridCtx: null,
-    };
+  for (let y = 0; y < MAX_TILE_COUNT; y++) {
+    for (let x = 0; x < MAX_TILE_COUNT; x++) {
+      ctx.rect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+    }
   }
 
-  render() {
-    return (
-      <div className='Game'>
-        <div className='Game-Map'>
-          {/* <canvas ref={(mapCanvas) => this.setupGameMap(mapCanvas)} className='Game-Map' width={CANVAS_SIZE} height={CANVAS_SIZE} /> */}
-          <canvas ref={(gridCanvas) => this.setupGameMapGrid(gridCanvas)} className='Game-Map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
-        </div>
-      </div>
-    );
-  }
+  ctx.stroke();
+}
 
-  setupGameMapGrid = (gridCanvas: HTMLCanvasElement | null) => {
-    const { gridCtx: existingCtx, gridElement: existingEl } = this.state;
+export const Game = () => {
+  const [state, updateState] = React.useState<IState>({
+    gridElement: null,
+    gridCtx: null,
+  });
+
+  const setupGameMapGrid = (gridCanvas: HTMLCanvasElement | null) => {
+    const { gridCtx: existingCtx, gridElement: existingEl } = state;
 
     if (existingCtx || existingEl) {
       return;
@@ -49,24 +46,20 @@ export class Game extends React.Component<{}, IState> {
 
     drawGrid(gridCtx);
 
-    this.setState({
+    updateState({
       gridCtx,
       gridElement: gridCanvas,
     });
-  }
-}
+  };
 
-function drawGrid(ctx: CanvasRenderingContext2D) {
-  ctx.strokeStyle = 'black';
-
-  for (let y = 0; y < MAX_TILE_COUNT; y++) {
-    for (let x = 0; x < MAX_TILE_COUNT; x++) {
-      ctx.rect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    }
-  }
-
-  ctx.stroke();
-}
+  return (
+    <div className='Game'>
+      <div className='Game-Map'>
+        <canvas ref={(gridCanvas) => setupGameMapGrid(gridCanvas)} className='Game-Map-grid' width={CANVAS_SIZE} height={CANVAS_SIZE} />
+      </div>
+    </div>
+  );
+};
 
 // export class Game extends React.Component<{}, IState> {
 //   constructor(props: IProps) {

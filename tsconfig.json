@@ -19,7 +19,7 @@
       "components/*": [ "src/components/*" ],
       "containers/*": [ "src/containers/*" ],
       "state/*": [ "src/state/*" ],
-      "routes/*": [ "src/routes/*" ],
+      "pages/*": [ "src/pages/*" ],
       "maps/*": [ "src/maps/*" ],
       "types/*": [ "src/types/*" ],
       "helpers/*": [ "src/helpers/*" ],

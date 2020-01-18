@@ -1,47 +1,22 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
-import posed, { PoseGroup } from 'react-pose';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import 'styles/main.scss';
 
-import { Main } from 'routes/main';
+import { Home } from 'pages/Home/Home';
+import { NotFound } from 'pages/NotFound/NotFound';
+import { Game } from 'pages/Game/Game';
 
-const RouteContainer = posed.div({
-  enter: {
-    opacity: 1,
-    transition: {
-      default: { ease: 'linear', duration: 350 }
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      default: { ease: 'linear', duration: 350 }
-    }
-  }
-});
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/game' component={Game} />
 
-class App extends React.Component {
-  render() {
-    return (
-      // <Provider store={createStore(store)}>
-        <BrowserRouter>
-          <Route
-            render={({ location }) => (
-              <PoseGroup className='PoseGroup'>
-                <RouteContainer key={location.pathname}>
-
-                  <Main />
-
-                </RouteContainer>
-              </PoseGroup>
-            )}
-          />
-        </BrowserRouter>
-      // </Provider>
-    );
-  }
-}
+      <Route component={NotFound} />
+    </Switch>
+  </BrowserRouter>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));

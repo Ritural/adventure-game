@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const VERSION = JSON.stringify(require('./package.json').version);
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
     filename: '[name].bundle.js',
     // chunkFilename: '[name].chunk',
@@ -18,7 +18,7 @@ module.exports = {
       components: path.resolve(__dirname, 'src/components'),
       containers: path.resolve(__dirname, 'src/containers'),
       state: path.resolve(__dirname, 'src/state'),
-      routes: path.resolve(__dirname, 'src/routes'),
+      pages: path.resolve(__dirname, 'src/pages'),
       maps: path.resolve(__dirname, 'src/maps'),
       styles: path.resolve(__dirname, 'src/styles'),
       types: path.resolve(__dirname, 'src/types'),
@@ -29,7 +29,7 @@ module.exports = {
       public: path.resolve(__dirname, 'public/'),
     },
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: [".ts", ".tsx", ".js", ".png"]
+    extensions: ['.ts', '.tsx', '.js', '.png']
   },
 
   module: {
@@ -42,8 +42,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["source-map-loader"],
-        enforce: "pre"
+        use: ['source-map-loader'],
+        enforce: 'pre'
       },
       {
         exclude: /node_modules/,
@@ -51,7 +51,7 @@ module.exports = {
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
-            loader: "css-loader", // translates CSS into CommonJS
+            loader: 'css-loader', // translates CSS into CommonJS
             options: {
               sourceMap: true,
               importLoaders: true,
@@ -65,7 +65,7 @@ module.exports = {
           },
           // "resolve-url-loader", // Resolves relative paths in url() statements
           {
-            loader: "sass-loader", // compiles Sass to CSS
+            loader: 'sass-loader', // compiles Sass to CSS
             options: {
               sourceMap: true
             }
@@ -98,8 +98,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       // HtmlWebpackPlugin generates a dynamic index.html file which inserts all our script tags declared above in entry
       template: './src/index.html', // You can add [chunkhash] to the index.html file as well
-      filename: 'index.html',       // Output filename
-      inject: 'body',               // Where the scripts will be inserted (concat with what's already in body)
+      filename: 'index.html', // Output filename
+      inject: 'body', // Where the scripts will be inserted (concat with what's already in body)
       files: {
         // Require manifest first as it includes webpack file references
         js: ['dist/index.js']
@@ -109,7 +109,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].css",
+      filename: '[name].css',
       // chunkFilename: "[id].css"
     }),
 
