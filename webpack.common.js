@@ -19,6 +19,7 @@ module.exports = {
       containers: path.resolve(__dirname, 'src/containers'),
       state: path.resolve(__dirname, 'src/state'),
       routes: path.resolve(__dirname, 'src/routes'),
+      maps: path.resolve(__dirname, 'src/maps'),
       styles: path.resolve(__dirname, 'src/styles'),
       types: path.resolve(__dirname, 'src/types'),
       helpers: path.resolve(__dirname, 'src/helpers'),

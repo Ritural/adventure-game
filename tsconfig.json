@@ -35,6 +35,7 @@
       "containers/*": [ "src/containers/*" ],
       "state/*": [ "src/state/*" ],
       "routes/*": [ "src/routes/*" ],
+      "maps/*": [ "src/maps/*" ],
       "types/*": [ "src/types/*" ],
       "helpers/*": [ "src/helpers/*" ],
       "assets/*": [ "src/assets/*" ],
