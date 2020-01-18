@@ -23,7 +23,7 @@ You'll need the following installed
 
 ## Linters (Add ons for your editor)
 
-Add a linter to your editor, if you're using VSCode you can search for TSLint in the extensions section.
+Add a linter to your editor, if you're using VSCode you can search for eslint in the extensions section.
 
 ## Helpful websites
 
